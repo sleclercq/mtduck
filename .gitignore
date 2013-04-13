@@ -178,4 +178,5 @@ target/
 # private files #
 #################
 config.properties
+mtgox.properties
 
