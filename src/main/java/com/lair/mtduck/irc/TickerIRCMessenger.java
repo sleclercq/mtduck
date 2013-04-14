@@ -88,7 +88,7 @@ public class TickerIRCMessenger extends PircBot {
                 sendMessage(channel, "Available commands : !price !refprices !gtfo");
                 break;
             case "McDuck":
-                sendMessage(channel, "Coin coin ! (Type !help for a list of available commands");
+                sendMessage(channel, "Coin coin ! (Type !help for a list of available commands)");
                 break;
         }
     }
