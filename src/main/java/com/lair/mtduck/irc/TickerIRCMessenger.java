@@ -47,20 +47,23 @@ public class TickerIRCMessenger extends PircBot {
     public void updateTicker(BigDecimal currentPrice) {
         this.currentPrice = currentPrice;
         if (priceUp == 0 && priceDown == 0) {
-            updateRefPrice(currentPrice);
-            sendMessage("Current price is " + currentPrice + ", setting priceUp to " + priceUp + " priceDown to " + priceDown);
+            initRefPrice(currentPrice);
+            sendMessage("Current price is " + currentPrice.toPlainString() + ", setting priceUp to " + priceUp + " priceDown to " + priceDown);
         } else if (currentPrice.compareTo(new BigDecimal(priceUp)) > 0) {
-            sendMessage("Price just broke " + priceUp + " upwards at " + currentPrice + " !");
-            updateRefPrice(currentPrice);
+            sendMessage("Price just broke " + priceUp + " upwards at " + currentPrice.toPlainString() + " !");
+            priceUp += 5;
+            priceDown += 5;
         } else if (currentPrice.compareTo(new BigDecimal(priceDown)) < 0) {
-            sendMessage("Price just broke " + priceDown + " downwards at " + currentPrice + " !");
-            updateRefPrice(currentPrice);
+            sendMessage("Price just broke " + priceDown + " downwards at " + currentPrice.toPlainString() + " !");
+            priceUp -= 5;
+            priceDown -= 5;
         }
     }
 
-    private void updateRefPrice(BigDecimal currentPrice) {
+
+    private void initRefPrice(BigDecimal currentPrice) {
         int result = currentPrice.intValue();
-        priceUp = result + 5 - (result % 5);
+        priceUp = result + 10 - (result % 5);
         priceDown = result - (result % 5);
     }
 
