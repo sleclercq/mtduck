@@ -64,9 +64,9 @@ public class Main {
 
     private static Properties loadFromEnv() {
         Properties prop = new Properties();
-        prop.setProperty("irc.server.host", "irc_server_host");
-        prop.setProperty("irc.server.password", "irc_server_password");
-        prop.setProperty("irc.channel", "irc_channel");
+        prop.setProperty("irc.server.host", System.getenv("irc_server_host"));
+        prop.setProperty("irc.server.password", System.getenv("irc_server_password"));
+        prop.setProperty("irc.channel", System.getenv("irc_channel"));
         return prop;
     }
 
