@@ -51,12 +51,23 @@ public class Main {
 
         try {
             InputStream inputStream = Main.class.getClassLoader().getResourceAsStream(propertiesFile);
-            prop.load(inputStream);
+            if (inputStream == null) {
+                prop = loadFromEnv();
+            } else {
+                prop.load(inputStream);
+            }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
         return prop;
     }
 
+    private static Properties loadFromEnv() {
+        Properties prop = new Properties();
+        prop.setProperty("irc.server.host", "irc_server_host");
+        prop.setProperty("irc.server.password", "irc_server_password");
+        prop.setProperty("irc.channel", "irc_channel");
+        return prop;
+    }
 
 }
