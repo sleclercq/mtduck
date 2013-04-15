@@ -20,6 +20,9 @@ public class MtGoxManager {
 
     public Ticker getTicker() {
         try {
+            String mtgoxApiKey = (String) context.getBean("mtgoxapikey");
+            String mtgoxApiSecret = ((String) context.getBean("mtgoxapisecret")).substring(0, 5);
+            logger.info("Initialized with apikey {} apisecret {} ", mtgoxApiKey, mtgoxApiSecret);
             return mtgoxUSD.getTicker();
         } catch (Exception e) {
             logger.warn("Could not get ticker", e);
